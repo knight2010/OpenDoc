@@ -28,7 +28,7 @@ jobs:
       - name: Install mkdocs + material主题
         run: |
           # 如果你有额外插件，追加 pip install xxx
-	  pip install mkdocs-material pymdown-extensions mkdocs-drawio
+          pip install mkdocs-material pymdown-extensions mkdocs-drawio
 
       - name: Build & Deploy to gh-pages
         run: mkdocs gh-deploy --force
