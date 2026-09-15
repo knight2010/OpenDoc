@@ -1,0 +1,23 @@
+<!-- docs/.overrides/main.html -->
+{% extends "base.html" %}
+
+<!-- 在 libs 块中添加外部样式 -->
+{% block libs %}
+  {{ super() }}
+  <link rel="stylesheet" href="./termynal.css">
+{% endblock %}
+
+<!-- 在 footer 或 scripts 块中添加 JS -->
+{% block scripts %}
+  {{ super() }}
+  <script src="./termynal.js"></script>
+
+  <!-- 可选：自动初始化所有带有 class="termynal" 的容器 -->
+  <script>
+    document$.subscribe(() => {
+      const termynals = document.querySelectorAll('.termynal');
+      termynals.forEach(el => new Termynal(el, { lineDelay: 500 }));
+    });
+  </script>
+{% endblock %}
+

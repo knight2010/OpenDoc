@@ -1,0 +1,83 @@
+site_name: 好运来
+theme:
+  palette: 
+
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  name: material
+  custom_dir: docs/overrides
+  features:
+    - search.suggest
+    - search.highlight
+markdown_extensions:
+  - pymdownx.highlight:
+      linenums: true  # 显示行号
+  - pymdownx.inlinehilite  # 行内代码高亮
+  - pymdownx.superfences  # 支持嵌套代码块（如 Mermaid）
+  - admonition  # 提示框
+  - attr_list
+  - pymdownx.keys
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - abbr
+  - pymdownx.snippets
+  - pymdownx.arithmatex
+  - pymdownx.progressbar
+  - pymdownx.superfences:
+     custom_fences:
+     - name: mermaid
+       class: mermaid
+       format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - overrides/custom.css
+
+extra_javascript:
+  - overrides/custom.js
+  - https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
+  - https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+extra:
+  generator: false
+  mermaid:
+    initialize:
+      startOnLoad: true
+plugins:
+  - search:
+      prebuild_index: true
+  - drawio:
+      # Control if hovering on a diagram shows a toolbar for zooming or not
+      toolbar: false
+
+      # Control if tooltips will be shown (data-tooltips)
+      tooltips: false
+
+      # Increase or decrease the padding around your diagrams
+      # (data-border)
+      border: 5
+
+      # Control if edit button will be shown in the lightbox view
+      # (data-edit)
+      edit: false
+
+      # Control if darkmode is supported
+      # When activated the color scheme for your diagrams is automatically toggled
+      # based on the selected theme. Supports classic mkdocs and mkdocs-material.
+      darkmode: true 
+
+      # Set the color of hyperlink highlighting
+      # When a diagram element has a hyperlink on it, the element is highlighted
+      # on mouse hover over to better indicate a hylerlink is present. This
+      # parameter controls the color of the highlight boarder. If omitted, no
+      # highlighting happens.
+      highlight: "#0000FF"

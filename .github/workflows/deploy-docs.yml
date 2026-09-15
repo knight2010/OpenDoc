@@ -1,0 +1,35 @@
+name: Deploy MkDocs to Github Pages
+
+# 触发条件：main分支推送，也可以手动执行
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - '.github/workflows/deploy-docs.yml'
+  workflow_dispatch: # 网页上可以手动点击运行
+
+permissions:
+  contents: write # 必须给写权限，才能推送gh-pages分支
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install mkdocs + material主题
+        run: |
+          # 如果你有额外插件，追加 pip install xxx
+	  pip install mkdocs-material pymdown-extensions mkdocs-drawio
+
+      - name: Build & Deploy to gh-pages
+        run: mkdocs gh-deploy --force
+
